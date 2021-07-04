@@ -1,0 +1,48 @@
+/* Mobile design */
+html {
+    text-align: center;
+    background-color: rgb(235, 213, 184);
+    color: rgb(56, 51, 68);
+    font-family: 'Yomogi', cursive;
+}
+
+h1 {
+    font-size: 45px;
+}
+
+p {
+    font-size: 50px;
+}
+
+#chalkboard {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-flow: column wrap;
+    background-color: rgb(56, 51, 68);
+    color: rgb(235, 213, 184);
+    width: 90%;
+    height: 90vh;
+    margin: auto;
+    border-radius: 0.5rem;
+}
+
+.rpsOption:hover {
+    text-shadow: 0 0 10px rgb(235, 213, 184);
+}
+
+/* ERROR: computer design triggers even at 
+small widths, unknown cause */
+
+/* Computer design */
+@media screen and (min-width: 768px) {
+    p {
+        font-size: 35px;
+    }
+
+    #chalkboard {
+        width: 90%;
+        height: 80vh;
+        flex-direction: row;
+    }
+} 
