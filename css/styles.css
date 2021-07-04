@@ -7,11 +7,11 @@ html {
 }
 
 h1 {
-    font-size: 45px;
+    font-size: 35px;
 }
 
 p {
-    font-size: 50px;
+    font-size:35px;
 }
 
 #chalkboard {
@@ -22,7 +22,7 @@ p {
     background-color: rgb(56, 51, 68);
     color: rgb(235, 213, 184);
     width: 90%;
-    height: 90vh;
+    height: 75vh;
     margin: auto;
     border-radius: 0.5rem;
 }
@@ -31,18 +31,23 @@ p {
     text-shadow: 0 0 10px rgb(235, 213, 184);
 }
 
-/* ERROR: computer design triggers even at 
-small widths, unknown cause */
 
-/* Computer design */
-@media screen and (min-width: 768px) {
-    p {
-        font-size: 35px;
-    }
-
+/* Tablet design */
+@media screen and (min-width: 600px) {
     #chalkboard {
         width: 90%;
+        height: 85vh;
+    }
+    .smallScreensOnly {
+        display: none;
+    }
+}
+
+
+/* Computer design */
+@media screen and (min-width: 992px) {
+    #chalkboard {
         height: 80vh;
         flex-direction: row;
     }
-} 
+}
