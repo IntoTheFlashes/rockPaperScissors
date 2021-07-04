@@ -14,17 +14,32 @@ p {
     font-size:35px;
 }
 
-#chalkboard {
+p:hover {
+    text-shadow: 0 0 10px rgb(134, 109, 75);
+}
+
+#playthroughText, #chalkboardFlex {
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
-    flex-flow: column wrap;
     background-color: rgb(56, 51, 68);
     color: rgb(235, 213, 184);
     width: 90%;
-    height: 75vh;
     margin: auto;
-    border-radius: 0.5rem;
+}
+
+#playthroughText {
+    word-wrap: break-word;
+    align-items: center;
+    font-size: 25px;
+    height: 7em;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+#chalkboardFlex {
+    align-items: center;
+    flex-flow: column wrap;
+    height: 23em;
+    border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .rpsOption:hover {
@@ -48,14 +63,38 @@ p {
 
 /* Tablet design */
 @media screen and (min-width: 600px) {
-    #chalkboard {
-        width: 90%;
-        height: 85vh;
-    }
     .smallScreensOnly {
         display: none;
     }
+}
 
+
+/* Computer design */
+@media screen and (min-width: 992px) {
+    #chalkboardFlex {
+        height: 70vh;
+        flex-direction: row;
+    }
+
+    #chalkboard {
+        margin: auto;
+    }
+
+    #playthroughText {
+        font-size: 30px;
+        height: 6em;
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    .rpsImg {
+        display: flex;
+        width: 20vw;
+    } 
+
+    #attributionContainer {
+        width: 50%;
+    }
+    
     #attributionContainer {
         display: flex;
         flex-flow: row wrap;
@@ -66,34 +105,10 @@ p {
 
     .attribution {
         display: flex;
-        padding: 10px 0 20px 0;
-        margin: 15px 0;
-        font-size: 14px;
-        line-height: 2px;
-        color:rgb(56, 51, 68);
-    }
-}
-
-
-/* Computer design */
-@media screen and (min-width: 992px) {
-    #chalkboard {
-        height: 80vh;
-        flex-direction: row;
-    }
-
-    .rpsImg {
-        display: flex;
-        width: 20vw;
-    }
-
-    #attributionContainer {
-        width: 50%;
-    }
-
-    .attribution {
         padding: 10px 0 0 0;
         margin: 1.5% 0;
         font-size: 16px;
+        line-height: 2px;
+        color:rgb(56, 51, 68);
     }
 }
