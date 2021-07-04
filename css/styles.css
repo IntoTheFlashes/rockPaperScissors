@@ -31,6 +31,20 @@ p {
     text-shadow: 0 0 10px rgb(235, 213, 184);
 }
 
+.rpsImg {
+    filter: 
+        invert(93%) 
+        sepia(8%) 
+        saturate(1014%) 
+        hue-rotate(334deg) 
+        brightness(93%) 
+        contrast(99%);
+    display: none;
+}
+
+.attribution {
+    display: none;
+}
 
 /* Tablet design */
 @media screen and (min-width: 600px) {
@@ -41,6 +55,21 @@ p {
     .smallScreensOnly {
         display: none;
     }
+
+    #attributionContainer {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+    }
+
+    .attribution {
+        display: flex;
+        padding: 10px 0 20px 0;
+        margin: 15px 0;
+        font-size: 14px;
+        line-height: 2px;
+        color:rgb(56, 51, 68);
+    }
 }
 
 
@@ -49,5 +78,16 @@ p {
     #chalkboard {
         height: 80vh;
         flex-direction: row;
+    }
+
+    .rpsImg {
+        display: flex;
+        width: 20vw;
+    }
+
+    .attribution {
+        padding: 10px 0 0 0;
+        margin: 1.5% 0;
+        font-size: 16px;
     }
 }
