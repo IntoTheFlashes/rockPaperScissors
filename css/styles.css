@@ -60,6 +60,8 @@ p {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;
+        width: 100%;
+        margin: auto;
     }
 
     .attribution {
@@ -83,6 +85,10 @@ p {
     .rpsImg {
         display: flex;
         width: 20vw;
+    }
+
+    #attributionContainer {
+        width: 50%;
     }
 
     .attribution {
