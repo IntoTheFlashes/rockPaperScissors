@@ -1,4 +1,6 @@
-// Define global variables
+// Console version (for the sake of fulfilling Odin's spec)
+
+// Declare global variables
 let computerChoice = "computerChoice ERROR";
 let playerChoice = "playerChoice ERROR";
 let winState = 0;
@@ -8,55 +10,66 @@ let winStateDraw = "It's a draw.";
 
 
 // Player chooses rock, paper, or scissors. 
-// Triggers the computer to choose,
-// which triggers the checkWin function
+// Triggers the game function,
+// triggers the computer to choose,
+// triggers the checkWin function
 // to see who wins the round.
+function game() {
+    // set default score
+    let score = 0;
+    for (let round = 0; round < 5; round++) {
+        // ask for player to give rock, paper, or scissors for this round
+        playerChoice = prompt("Please enter rock, paper, or scissors.").toLowerCase();
+        if (playerChoice != "rock" && playerChoice != "paper" && playerChoice != "scissors"){
+            score = 10;
+            break;
+        }
 
-// Player can choose rock
-document.getElementById("rock").addEventListener("click", rockFunction);
-
-function rockFunction() {
-    playerChoice = "rock";
-    computerPlay();
-    checkWin(playerChoice, computerChoice)
-} 
-
-// Player can choose paper
-document.getElementById("paper").addEventListener("click", paperFunction);
-
-function paperFunction() {
-    playerChoice = "paper";
-    computerPlay();
-    checkWin(playerChoice, computerChoice);
-} 
-
-// Player can choose scissors
-document.getElementById("scissors").addEventListener("click", scissorsFunction);
-
-function scissorsFunction() {
-    playerChoice = "scissors";
-    computerPlay();
-    checkWin(playerChoice, computerChoice);
-} 
-
-// Computer randomly chooses rock, paper, or scissors
-function computerPlay () {
-let randNumber = Math.ceil(Math.random()*3);
-    if (randNumber == 1) {
-        return computerChoice = "rock";
+        else {
+            // ask for computer's choice this round
+            computerPlay(); 
+            // check who won this round
+            checkWin(playerChoice, computerChoice);
+            // alter the score based on who won
+            score = score + winState;
+        }
     }
-    else if (randNumber == 2) {
-        return computerChoice =  "paper";
+    if (score == 10) {
+        console.log("Invalid value entered. Cancelling match.")
     }
-    else if (randNumber == 3) {
-        return computerChoice =  "scissors";
+
+    else if (score < 1) {
+        console.log("Oof. You lost the match to a machine.")
     }
-    else {
-        return
+    else if (score > 1) {
+        console.log("You win the match~")
+    }
+    else if (score == 0) {
+        console.log("It's a draw overall. \n You're equally as skilled as a computer picking randomly.")
     }
 }
 
-
+// Computer randomly chooses rock, paper, or scissors
+function computerPlay () {
+    // select value from 1 to 3
+    let randNumber = Math.ceil(Math.random()*3);
+    // each value has a corresponding string of rock, paper, or scissors
+    // this determines what the computer plays this round
+        if (randNumber == 1) {
+            return computerChoice = "rock";
+        }
+        else if (randNumber == 2) {
+            return computerChoice =  "paper";
+        }
+        else if (randNumber == 3) {
+            return computerChoice =  "scissors";
+        }
+        else {
+            return
+        }
+    }
+    
+    
 // Determines whether player or computer wins
 function checkWin(playerChoice, computerChoice) {
     if (playerChoice == "rock") {
@@ -118,17 +131,11 @@ function checkWin(playerChoice, computerChoice) {
     }
 }
 
-
+    
 // Print the actions to console
-function printPlaythrough(playerChoice, computerChoice, winState) {
+function printPlaythrough(playerChoice, computerChoice, roundWinState) {
     console.log("Player chose " + playerChoice);
     console.log("The computer played " + computerChoice);
-    console.log(winState);
-
-    document.getElementById('playthroughText').innerHTML = 
-    `You chose ${playerChoice}. ${("<br>")}
-    The computer played ${computerChoice}. ${("<br>")}
-    ${winState}`
-    
+    console.log(roundWinState);
     return
 }
