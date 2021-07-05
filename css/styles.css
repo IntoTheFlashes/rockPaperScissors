@@ -33,6 +33,7 @@ p:hover {
     font-size: 25px;
     height: 7em;
     border-radius: 0.5rem 0.5rem 0 0;
+    white-space: pre-wrap;
 }
 
 #chalkboardFlex {

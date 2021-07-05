@@ -2,9 +2,10 @@
 let computerChoice = "computerChoice ERROR";
 let playerChoice = "playerChoice ERROR";
 let winState = 0;
-let winStatePlayerWin = "You win this round.";
-let winStateComputerWin = "The computer wins this round.";
-let winStateDraw = "It's a draw.";
+let winStatePlayerWin = "you win this round";
+let winStateComputerWin = "the computer wins this round";
+let winStateDraw = "it's a draw";
+let toBePrinted = "";
 
 
 // Player chooses rock, paper, or scissors. 
@@ -17,6 +18,7 @@ document.getElementById("rock").addEventListener("click", rockFunction);
 
 function rockFunction() {
     playerChoice = "rock";
+    document.getElementById('playthroughText').innerHTML = "";
     computerPlay();
     checkWin(playerChoice, computerChoice)
 } 
@@ -26,6 +28,7 @@ document.getElementById("paper").addEventListener("click", paperFunction);
 
 function paperFunction() {
     playerChoice = "paper";
+    document.getElementById('playthroughText').innerHTML = "";
     computerPlay();
     checkWin(playerChoice, computerChoice);
 } 
@@ -35,6 +38,7 @@ document.getElementById("scissors").addEventListener("click", scissorsFunction);
 
 function scissorsFunction() {
     playerChoice = "scissors";
+    document.getElementById('playthroughText').innerHTML = "";
     computerPlay();
     checkWin(playerChoice, computerChoice);
 } 
@@ -119,16 +123,32 @@ function checkWin(playerChoice, computerChoice) {
 }
 
 
-// Print the actions to console
+// Form the phrase to be printed 
 function printPlaythrough(playerChoice, computerChoice, winState) {
     console.log("Player chose " + playerChoice);
-    console.log("The computer played " + computerChoice);
+    console.log("The computer chose " + computerChoice);
     console.log(winState);
 
-    document.getElementById('playthroughText').innerHTML = 
-    `You chose ${playerChoice}. ${("<br>")}
-    The computer played ${computerChoice}. ${("<br>")}
+    toBePrinted = `    you chose ${playerChoice}
+    the computer played ${computerChoice}
     ${winState}`
+    printSlow();
     
     return
 }
+
+
+let speed = 50;
+let charactersPrinted = 0;
+function printSlow() {
+    if (charactersPrinted < toBePrinted.length) {
+        document.getElementById('playthroughText').innerHTML += 
+                toBePrinted.charAt(charactersPrinted);
+        charactersPrinted++;
+        setTimeout(printSlow, speed);
+    }
+    else {
+        charactersPrinted = 0;
+        return;
+    }
+} 
