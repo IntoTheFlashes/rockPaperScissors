@@ -7,7 +7,7 @@ html {
 }
 
 h1 {
-    font-size: 35px;
+    font-size: 25px;
 }
 
 p {
@@ -27,7 +27,7 @@ p:hover {
 
 #playthroughText {
     word-wrap: break-word;
-    font-size: 25px;
+    font-size: 20px;
     white-space: pre-wrap;
     text-align: right;
 }
@@ -129,6 +129,9 @@ p:hover {
         color:rgb(56, 51, 68);
     }
 
+    h1 {
+            font-size: 35px;
+    }
     
     #scoreText {
         text-align: left;
@@ -139,6 +142,9 @@ p:hover {
         grid-column-start: 3;
     }
 
+    #scoreText, #playthroughText {
+        font-size: 26px;
+    }
 
     #gameText {
         display: grid;
