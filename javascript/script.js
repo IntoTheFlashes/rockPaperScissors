@@ -6,6 +6,8 @@ let winStatePlayerWin = "you win this round";
 let winStateComputerWin = "the computer wins this round";
 let winStateDraw = "it's a draw";
 let toBePrinted = "";
+let round = 0;
+let score = 0;
 
 
 // Player chooses rock, paper, or scissors. 
@@ -125,16 +127,29 @@ function checkWin(playerChoice, computerChoice) {
 
 // Form the phrase to be printed 
 function printPlaythrough(playerChoice, computerChoice, winState) {
-    console.log("Player chose " + playerChoice);
-    console.log("The computer chose " + computerChoice);
-    console.log(winState);
-
-    toBePrinted = `    you chose ${playerChoice}
+    toBePrinted = `you chose ${playerChoice}
     the computer played ${computerChoice}
     ${winState}`
     printSlow();
+    endRound();
     
     return
+}
+
+// edit the compound score, increment the round number
+function endRound() {
+    score = score + winState;
+    let winningPlayer = "";
+    if (score > 0){
+            winningPlayer = "you are winning"};
+    if (score < 0){
+            winningPlayer = "the computer is winning"};
+    if (score == 0){
+            winningPlayer = "it's too close to call"};
+    round ++;
+    document.getElementById('scoreText').innerHTML = 
+                `score: ${score} ${"<br>"} round:  ${round} ${"<br>"} ${winningPlayer}`;
+    return;
 }
 
 

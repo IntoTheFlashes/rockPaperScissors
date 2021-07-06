@@ -18,9 +18,7 @@ p:hover {
     text-shadow: 0 0 10px rgb(134, 109, 75);
 }
 
-#playthroughText, #chalkboardFlex {
-    display: flex;
-    justify-content: space-evenly;
+#gameText, #chalkboardFlex {
     background-color: rgb(56, 51, 68);
     color: rgb(235, 213, 184);
     width: 90%;
@@ -29,17 +27,32 @@ p:hover {
 
 #playthroughText {
     word-wrap: break-word;
-    align-items: center;
     font-size: 25px;
-    height: 7em;
-    border-radius: 0.5rem 0.5rem 0 0;
     white-space: pre-wrap;
+    text-align: right;
+}
+
+#scoreText {
+    font-size: 25px;
+}
+
+#gameText {
+    display: grid;
+    grid-template-columns: 1fr 5.5fr;
+    grid-template-rows: 7em;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+#gameText:hover {
+    text-shadow: 0 0 10px rgba(235, 213, 184, 0.5);
 }
 
 #chalkboardFlex {
+    display: flex;
+    justify-content: space-evenly;
     align-items: center;
     flex-flow: column wrap;
-    height: 23em;
+    height: 65vh;
     border-radius: 0 0 0.5rem 0.5rem;
 }
 
@@ -62,29 +75,32 @@ p:hover {
     display: none;
 }
 
-/* Tablet design */
-@media screen and (min-width: 600px) {
-    .smallScreensOnly {
+
+/* Phone design */
+@media screen and (max-width: 992px) {
+    #scoreText {
         display: none;
+    }
+    
+    #playthroughText {
+        width: 80vw;
+        text-align: right;
     }
 }
 
 
 /* Computer design */
 @media screen and (min-width: 992px) {
+    .smallScreensOnly {
+        display: none;
+    }
     #chalkboardFlex {
-        height: 70vh;
+        height: vh;
         flex-direction: row;
     }
 
     #chalkboard {
         margin: auto;
-    }
-
-    #playthroughText {
-        font-size: 30px;
-        height: 6em;
-        border-radius: 0.5rem 0.5rem 0 0;
     }
 
     .rpsImg {
@@ -99,7 +115,7 @@ p:hover {
     #attributionContainer {
         display: flex;
         flex-flow: row wrap;
-        justify-content: space-around;
+        justify-content: center;
         width: 100%;
         margin: auto;
     }
@@ -107,9 +123,28 @@ p:hover {
     .attribution {
         display: flex;
         padding: 10px 0 0 0;
-        margin: 1.5% 0;
+        margin: 1.5% 5%;
         font-size: 16px;
         line-height: 2px;
         color:rgb(56, 51, 68);
+    }
+
+    
+    #scoreText {
+        text-align: left;
+        grid-column-start: 2;
+    }
+    
+    #playthroughText {
+        grid-column-start: 3;
+    }
+
+
+    #gameText {
+        display: grid;
+        grid-template-columns: 1fr 5fr 15fr 1fr;
+        grid-template-rows: 7em 4em;
+        border-radius: 0.5rem 0.5rem 0 0;
+        border-bottom: 0.2em solid rgb(235, 213, 184);
     }
 }
