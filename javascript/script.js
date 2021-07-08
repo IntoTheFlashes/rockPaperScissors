@@ -1,7 +1,6 @@
 // Define global variables
 let computerChoice = "computerChoice ERROR";
-let playerChoice = "playerChoice ERROR";
-let winState = 0;
+let winStateNumber = 0;
 let winStatePlayerWin = "you win this round";
 let winStateComputerWin = "the computer wins this round";
 let winStateDraw = "it's a draw";
@@ -10,56 +9,37 @@ let round = 0;
 let score = 0;
 
 
-// Player chooses rock, paper, or scissors. 
-// Triggers the computer to choose,
-// which triggers the checkWin function
-// to see who wins the round.
+// Main code starts
 
-// Player can choose rock
-document.getElementById("rock").addEventListener("click", rockFunction);
-
-function rockFunction() {
-    playerChoice = "rock";
+function playerFunction(playerChoice) {
     document.getElementById('playthroughText').innerHTML = "";
     computerPlay();
     checkWin(playerChoice, computerChoice)
 } 
 
-// Player can choose paper
-document.getElementById("paper").addEventListener("click", paperFunction);
+let rockSelect = function() {
+    playerFunction("rock");
+}
 
-function paperFunction() {
-    playerChoice = "paper";
-    document.getElementById('playthroughText').innerHTML = "";
-    computerPlay();
-    checkWin(playerChoice, computerChoice);
-} 
+let paperSelect = function() {
+    playerFunction("paper");
+}
 
-// Player can choose scissors
-document.getElementById("scissors").addEventListener("click", scissorsFunction);
+let scissorsSelect = function() {
+    playerFunction("scissors");
+}
 
-function scissorsFunction() {
-    playerChoice = "scissors";
-    document.getElementById('playthroughText').innerHTML = "";
-    computerPlay();
-    checkWin(playerChoice, computerChoice);
-} 
+// Player clicks button, selecting rock, paper, or scissors
+// which causes the playerFunction to activate.
+document.getElementById("rock").addEventListener("click", rockSelect);
+document.getElementById("paper").addEventListener("click", paperSelect);
+document.getElementById("scissors").addEventListener("click", scissorsSelect);
 
 // Computer randomly chooses rock, paper, or scissors
 function computerPlay () {
-let randNumber = Math.ceil(Math.random()*3);
-    if (randNumber == 1) {
-        return computerChoice = "rock";
-    }
-    else if (randNumber == 2) {
-        return computerChoice =  "paper";
-    }
-    else if (randNumber == 3) {
-        return computerChoice =  "scissors";
-    }
-    else {
-        return
-    }
+    let rpsArray = ["rock", "paper", "scissors"]
+    let randNumber = Math.floor(Math.random()*3);
+    return computerChoice = rpsArray[randNumber];
 }
 
 
@@ -68,68 +48,68 @@ function checkWin(playerChoice, computerChoice) {
     if (playerChoice == "rock") {
         switch (computerChoice) {
             case "rock":
-                winState = 0;
-                printPlaythrough("rock", "rock", winStateDraw);
+                winStateNumber = 0;
+                printPlaythrough(playerChoice, computerChoice, winStateDraw);
                 break;
             
             case "paper":
-                winState = -1;
-                printPlaythrough("rock", "paper", winStateComputerWin);
+                winStateNumber = -1;
+                printPlaythrough(playerChoice, computerChoice, winStateComputerWin);
                 break;
 
             case "scissors":
-                winState = 1;
-                printPlaythrough("rock", "scissors", winStatePlayerWin);
+                winStateNumber = 1;
+                printPlaythrough(playerChoice, computerChoice, winStatePlayerWin);
                 break;
         }
     }
     else if (playerChoice == "paper") {
         switch (computerChoice) {
             case "rock":
-                winState = 1;
-                printPlaythrough("paper", "rock", winStatePlayerWin);
+                winStateNumber = 1;
+                printPlaythrough(playerChoice, computerChoice, winStatePlayerWin);
                 break;
             
             case "paper":
-                winState = 0;
-                printPlaythrough("paper", "paper", winStateDraw);
+                winStateNumber = 0;
+                printPlaythrough(playerChoice, computerChoice, winStateDraw);
                 break;
 
             case "scissors":
-                winState = -1;
-                printPlaythrough("paper", "scissors", winStateComputerWin);
+                winStateNumber = -1;
+                printPlaythrough(playerChoice, computerChoice, winStateComputerWin);
                 break;
         }
     }
     else if (playerChoice == "scissors") {
         switch (computerChoice) {
             case "rock":
-                winState = -1;
-                printPlaythrough("scissors", "rock", winStateComputerWin);
+                winStateNumber = -1;
+                printPlaythrough(playerChoice, computerChoice, winStateComputerWin);
                 break;
             
             case "paper":
-                winState = 1;
-                printPlaythrough("scissors", "paper", winStatePlayerWin);
+                winStateNumber = 1;
+                printPlaythrough(playerChoice, computerChoice, winStatePlayerWin);
                 break;
 
             case "scissors":
-                winState = 0;
-                printPlaythrough("scissors", "scissors", winStateDraw);
+                winStateNumber = 0;
+                printPlaythrough(playerChoice, computerChoice, winStateDraw);
                 break;
         }
     }
     else {
-        winState = "winState ERROR";
+        winStateNumber = "winState ERROR";
     }
 }
 
 
 // Form the phrase to be printed 
-function printPlaythrough(playerChoice, computerChoice, winState) {
+function printPlaythrough(playerChoice, computerChoice, winStateText) {
     toBePrinted = `you chose ${playerChoice}
     the computer played ${computerChoice}
-    ${winState}`
+    ${winStateText}`
     printSlow();
     endRound();
     
@@ -138,13 +118,13 @@ function printPlaythrough(playerChoice, computerChoice, winState) {
 
 // edit the compound score, increment the round number
 function endRound() {
-    score = score + winState;
+    score = score + winStateNumber;
     let winningPlayer = "";
     if (score > 0){
             winningPlayer = "you are winning"};
     if (score < 0){
             winningPlayer = "the computer is winning"};
-    if (score == 0){
+    if (score === 0){
             winningPlayer = "it's too close to call"};
     round ++;
     document.getElementById('scoreText').innerHTML = 
